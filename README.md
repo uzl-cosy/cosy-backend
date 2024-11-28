@@ -1,6 +1,6 @@
 # CoSy
 
-![Express.js](https://img.shields.io/badge/Exporess-4.18.2-blue.svg)
+![Express.js](https://img.shields.io/badge/Express-4.18.2-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![NPM](https://img.shields.io/badge/Build-NPM-blue.svg)
 
