@@ -1,40 +1,168 @@
-# laboratorium-backend
+# CoSy
 
-This project implements the backend of cosy (communication support system).
+![Node.js](https://img.shields.io/badge/Node-v20.10.0-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![NPM](https://img.shields.io/badge/Build-NPM-blue.svg)
 
-## Getting started
+
+**CoSy** (Communication Support System) is an AI-based learning assistance system developed at the University of Lübeck. It supports the development of patient-oriented communication skills among students, particularly in medical contexts. CoSy records role-playing scenarios in communication modules using microphones. It provides participants with individual feedback based on quantifiable parameters such as volume, speaking pace, and speaking time. This feedback can be effectively integrated into instructor feedback.
+
+## Table of Contents
+
+- [CoSy](#cosy)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Technical Architecture](#technical-architecture)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Command Line Execution](#command-line-execution)
+    - [Configuration](#configuration)
+    - [Starting with Electron GUI](#starting-with-electron-gui)
+    - [Local Hosting of Backend and Frontend](#local-hosting-of-backend-and-frontend)
+  - [License](#license)
+
+## Overview
+
+**CoSy** is an AI-based learning assistance system developed at the University of Lübeck. It supports the development of patient-oriented communication skills among students, particularly in medical contexts.
+
+## Technical Architecture
+
+The **CoSy** system consists of several components:
+
+- **CoSy Processor**: This repository contains the software that uses and controls specific AI modules and communicates with the backend. The processor handles all data processing locally on the executing device, ensuring data privacy and efficiency.
+- **CoSy Backend**: The processor communicates with the backend, which stores and manages the processed data.
+- **CoSy Frontend**: The backend information is displayed in a frontend application, providing participants and instructors with insightful feedback and analysis.
+
+This architecture allows for efficient processing and secure handling of sensitive data, as audio recordings and analyses are performed locally before being communicated to the backend for aggregation and display.
 
 ## Installation
-* Install Node (version used: v20.10.0)
-* Install MongoDB
-(To access and check the database it is recommended to install & use MongoDBCompass)
 
-Start project:
-* npm run dev
+To install and set up **CoSy**, follow these steps:
 
 
+1. **Clone the repository:**
+
+     ```bash
+     git clone https://github.com/yourusername/cosy.git
+     cd cosy
+     ```
+
+2. **Install dependencies:**
+
+     Make sure you have [Poetry](https://python-poetry.org/) installed. Then run:
+
+     ```bash
+     poetry install
+     ```
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### Command Line Execution
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+You can run **CoSy** directly from the command line using the following command:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```bash
+poetry run main -c config.yml
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- **Note:** The parameter ```-c config.yml``` specifies the configuration file to use. If you omit this parameter, **CoSy** will use the default configuration.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Configuration
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+**CoSy** uses a YAML configuration file (```config.yml```) to customize its behavior. You can modify the default configuration or provide your own configuration file.
 
-## License
-For open source projects, say how it is licensed.
+- **Using the default configuration:**
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+    Simply run:
+
+    ```bash
+    poetry run main
+    ```
+
+    This runs **CoSy** with default settings.
+
+- **Using a custom configuration file:**
+
+    Create your own ```config.yml``` file with desired settings and run:
+
+    ```bash
+    poetry run main -c path/to/your_config.yml
+    ```
+
+### Starting with Electron GUI
+
+**CoSy** can also be started using an Electron GUI that provides a more user-friendly interface.
+
+1. **Navigate to the GUI directory:**
+
+     ```bash
+     cd gui
+     ```
+
+2. **Build the GUI:**
+
+     You need to build the Electron GUI before starting.
+
+     - Install dependencies:
+
+         ```bash
+         npm install
+         ```
+
+     - Build GUI:
+
+         ```bash
+         npm run build
+         ```
+
+3. **Start the GUI:**
+
+     After building, you can start the Electron application:
+
+     ```bash
+     npm start
+     ```
+
+### Local Hosting of Backend and Frontend
+
+You can host local instances of the CoSy backend and frontend using Docker Compose.
+
+1. **Clone and prepare related repositories:**
+
+    ```bash
+    # Clone backend repository
+    git clone https://github.com/yourusername/cosy-backend.git
+    
+    # Clone frontend repository
+    git clone https://github.com/yourusername/cosy-frontend.git
+    
+    # Create symbolic links
+    ln -s ../cosy-backend ./backend
+    ln -s ../cosy-frontend ./frontend
+    ```
+2. **Edit Docker Compose file:**
+    Update the context path in the Docker Compose file (```docker-compose.yml```) to point to the backend and frontend directories.
+3. **Build Docker images:**
+
+    ```bash
+    docker-compose build
+    ```
+
+
+
+## Links & Verwendete Ressourcen
+
+- Icons: [https://www.untitledui.com/icons](https://www.untitledui.com/icons)
+- Figma: [https://www.figma.com/file/lBEl9snPE37REbS9J37njk/Ipad---Interactive_LABORATORIUM?node-id=728%3A5250&t=vx6WST5JYsuOhF3m-0](https://www.figma.com/file/lBEl9snPE37REbS9J37njk/Ipad---Interactive_LABORATORIUM?node-id=728%3A5250&t=vx6WST5JYsuOhF3m-0)
+- Miro: [text](https://)
+- vite-plugin-ssr: [https://vite-plugin-ssr.com/](https://vite-plugin-ssr.com/)
+
+
+* Install Node (used version: v20.10.0)
+
+
+* Install dependencies:
+npm install 
+
+* Start application
+npm run dev
